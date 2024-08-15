@@ -5,7 +5,7 @@ import './IndividualCard.css';
 import Sponsors from '../../components/Sponsors';
 import { useAuth } from '../../AuthContext';
 
-const BASE_URL = 'http://13.234.118.246/';
+const BASE_URL = 'http://127.0.0.1:8000/';
 
 const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
   const { eventCode } = useParams();
