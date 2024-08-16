@@ -1,92 +1,7 @@
 body {
   background-color: #06252a;
 }
-/*  .blob1 {
-    width: 369.47px;
-    height: 364px;
-    right: 0;
-    top: 0;
-    float: right;
-    background: url(./images/blob1.png);
-    mix-blend-mode: overlay;
-  }
-  .blob2 {
-    width: -webkit-fill-available;
-    height: 364px;
-    left: 0;
-    top: 0;
-    float: left;
-    background-repeat: no-repeat;
-    background: url(./images/blob2.png);
-    mix-blend-mode: overlay;
-    background-repeat: no-repeat;
-  }
-  .blob1M {
-    width: 369.47px;
-    height: 364px;
-    right: 0;
-    top: 0;
-    float: right;
-    background: url(./images/blob1.png);
-    mix-blend-mode: overlay;
-  }
-  .blob2M {
-    width: -webkit-fill-available;
-    height: 364px;
-    left: 0;
-    top: 0;
-    float: left;
-    background-repeat: no-repeat;
-    background: url(./images/blob2.png);
-    mix-blend-mode: overlay;
-    background-repeat: no-repeat;
-  }
 
-  .umangM {
-    top: 100px;
-    height: 357px;
-    position: absolute;
-    display: flex;
-    padding: 0 30px;
-    width: -webkit-fill-available;
-  }
-  .umangD {
-    display: none;
-  }
-  .about-umang {
-    top: 470px;
-    position: absolute;
-    color: white;
-    text-align: justify;
-    padding: 0 30px;
-    text-align-last: center;
-  }
-  .frame {
-    height: 74px;
-    background-color: #86c8c4;
-    position: absolute;
-    width: 100%;
-    top: 744px;
-  }
-  .facesM {
-    top: 910px;
-    height: 357px;
-    position: absolute;
-    display: flex;
-    padding: 0 30px;
-    width: -webkit-fill-available;
-  }
-  .facesD {
-    display: none;
-  }
-  .about-faces {
-    top: 1280px;
-    position: absolute;
-    color: white;
-    text-align: justify;
-    padding: 0 30px;
-    text-align-last: center;
-  } */
 @media screen and (max-width: 768px) {
   /* mobile version */
 
@@ -94,7 +9,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 30px;
-   
   }
   .frame {
     height: 73px;
@@ -153,56 +67,3 @@ body {
     width: 40%;
   }
 }
-/* .blob1 {
-    display: none;
-  }
-  .blob2 {
-    display: none;
-  }
-  .blob1M {
-    display: none;
-  }
-  .blob2M {
-    display: none;
-  }
-  .blob1D {
-    width: 850px;
-    height: 840px;
-    float: right;
-    background: url(./images/blob1D.png);
-    mix-blend-mode: overlay;
-  }
-  .blob2D {
-    width: 850px;
-    height: 840px;
-    position: absolute;
-    top: 500px;
-    float: left;
-    background: url(./images/blob2D.png);
-    mix-blend-mode: overlay;
-  }
-  .blob3D {
-    width: 850px;
-    height: 644px;
-    right: 0;
-    position: absolute;
-    top: 950px;
-    float: right;
-    background: url(./images/blob3D.png);
-    mix-blend-mode: overlay;
-  }
-
-  .umangM {
-    display: none;
-  }
-  .umangD {
-    /* top: 150px; */
-
-/* position: absolute; */
-/* display: flex;
-    padding: 0 70px;
-    width: 45%; */
-/* left: 0;   } */
-/* .facesM {
-    display: none;
-  } */

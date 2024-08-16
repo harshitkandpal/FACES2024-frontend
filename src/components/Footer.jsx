@@ -1,4 +1,4 @@
-import { FaInstagram, FaLinkedin, FaYoutube } from 'react-icons/fa';
+import { FaInstagram } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -16,14 +16,8 @@ const Footer = () => {
         
         {/* Social Media Icons */}
         <div className="flex justify-center space-x-6">
-          <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/council.fcrit2024/" target="_blank" rel="noopener noreferrer">
             <FaInstagram className="text-2xl hover:text-gray-300" />
-          </a>
-          <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer">
-            <FaLinkedin className="text-2xl hover:text-gray-300" />
-          </a>
-          <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer">
-            <FaYoutube className="text-2xl hover:text-gray-300" />
           </a>
         </div>
       </div>

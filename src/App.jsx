@@ -45,7 +45,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Mainframe element={<LandingPage />} />} />
             <Route path='/aboutFaces' element={<Mainframe element={<AboutFaces />} />} />
-            <Route path='/eventCards' element={<Mainframe element={<EventCards />} />} />
+            <Route path='/events' element={<Mainframe element={<EventCards />} />} />
             <Route path="/profile" element={<Mainframe element={<Profile eventToCheckOut={eventsToCheckout} setEventsToCheckout={setEventsToCheckout} />} />} />
             <Route path="/individualCard/:eventCode" element={<Mainframe element={<IndividualCard setEventsToCheckout={setEventsToCheckout} eventToCheckOut={eventsToCheckout} />} />} />
             <Route path='/login' element={<Mainframe element={<Login />} />} />
