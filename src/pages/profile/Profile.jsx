@@ -44,8 +44,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
               });
             }
           });
-          console.log(unverified);
-          console.log(verified);
+
           setVerifiedEvents(verified);
           setUnverifiedEvents(unverified);
 
@@ -104,21 +103,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
-              <span className="block italic text-gray-500">{`Day: ${event.day}`}</span>
-              <span className="block italic text-gray-500">{`${event.teamName}`}</span>
-              <span className="block italic text-gray-500">{`Entry Fee: ${event.entry_fee}`}</span>
-              <div className="block italic text-gray-500">
-              <span className="block italic text-gray-500">
-</span>
-
-</div>
-<button
-  type="button"
-  onClick={() => window.open(`${event.whatsapp_link}`, '_blank')}
-  className="bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 m-2"
->
-  Join WhatsApp Group
-</button>
+              <span className="block italic text-gray-500">{`Team: ${event.teamName}`}</span>
               <span className="block text-green-500">Verified</span>
             </div>
           ))
@@ -134,7 +119,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
-              <span className="block italic text-gray-500">{`${event.teamName}`}</span>
+              <span className="block italic text-gray-500">{`Team: ${event.teamName}`}</span>
               <span className="block text-yellow-500">Pending Verification</span>
             </div>
           ))

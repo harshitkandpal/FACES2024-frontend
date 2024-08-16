@@ -1,66 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Loader from './components/Loader'; 
+import Login from './pages/login/Login';
 import LandingPage from './pages/landingPage/LandingPage';
 import AboutFaces from './pages/aboutFaces/AboutFaces';
 import EventCards from './pages/eventCards/EventCards';
 import IndividualCard from './pages/individualCard/IndividualCard';
 import Profile from './pages/profile/Profile';
-import Login from './pages/login/Login';
-import { AuthProvider } from './AuthContext';
+import { AuthProvider } from './AuthContext'; // Import AuthProvider
+import { EventProvider } from './contexts/EventContext'; // Import EventProvider
 
 function App() {
-  const [loading, setLoading] = useState(false); 
-
-  const location = useLocation();
+  const [events, setEvents] = useState([]);
+  const [featuredEvents, setFeaturedEvents] = useState([]);
+  const [eventsToCheckout, setEventsToCheckout] = useState([]); // Centralized state
 
   useEffect(() => {
- 
-    setLoading(true);
+    const fetchEvents = async () => {
+      // Fetch events and featured events (replace with actual API calls)
+      // const eventData = await getEvents();
+      // const featuredEventData = await getFeaturedEvents();
+      
+      // Simulated data
+      setEvents([]);
+      setFeaturedEvents([]);
+    };
 
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); 
-
-    return () => clearTimeout(timer); 
-  }, [location]); 
+    fetchEvents();
+  }, []);
 
   const Mainframe = ({ element }) => (
     <>
-      <AuthProvider>
       <Navbar />
       {element}
       <Footer />
-      </AuthProvider>
     </>
   );
 
   return (
-    <>
-      {loading ? (
-        <Loader /> 
-      ) : (
-        <Routes>
-          <Route path="/" element={<Mainframe element={<LandingPage />} />} />
-          <Route path="/aboutFaces" element={<Mainframe element={<AboutFaces />} />} />
-          <Route path="/eventCards" element={<Mainframe element={<EventCards />} />} />
-          <Route path="/individualCard" element={<Mainframe element={<IndividualCard />} />} />
-          <Route path="/profile" element={<Mainframe element={<Profile />} />} />
-          <Route path="/login" element={<Mainframe element={<Login />} />} />
-        </Routes>
-      )}
-    </>
+    <AuthProvider>
+      <EventProvider>
+        <Router>
+          <Routes>
+            <Route path='/' element={<Mainframe element={<LandingPage />} />} />
+            <Route path='/aboutFaces' element={<Mainframe element={<AboutFaces />} />} />
+            <Route path='/eventCards' element={<Mainframe element={<EventCards />} />} />
+            <Route path="/profile" element={<Mainframe element={<Profile eventToCheckOut={eventsToCheckout} setEventsToCheckout={setEventsToCheckout} />} />} />
+            <Route path="/individualCard/:eventCode" element={<Mainframe element={<IndividualCard setEventsToCheckout={setEventsToCheckout} eventToCheckOut={eventsToCheckout} />} />} />
+            <Route path='/login' element={<Mainframe element={<Login />} />} />
+          </Routes>
+        </Router>
+      </EventProvider>
+    </AuthProvider>
   );
 }
 
-export default function WrappedApp() {
-  return (
-    <Router>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </Router>
-  );
-}
+export default App;

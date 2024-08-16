@@ -21,21 +21,21 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     const fetchEventDetails = async () => {
       try {
         const response = await getEventDetails(eventCode);
-        setEventData(response.data.event);
+        setEventData(response.data.event); // Set eventData once fetched
       } catch (error) {
         console.error('Error fetching event details:', error);
       }
     };
 
     fetchEventDetails();
-  }, [eventCode]);
+  }, [eventCode]); // Only depends on eventCode
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       if (authState.token) {
         try {
           const response = await getUserDetails(authState.token);
-          setUser(response.data.user);
+          setUser(response.data.user); // Set user data once fetched
         } catch (error) {
           console.error('Error fetching user details:', error);
         }
@@ -43,13 +43,14 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     };
 
     fetchUserDetails();
-  }, [authState.token]);
+  }, [authState.token]); // Only depends on the token
 
+  // A third effect to handle automatic roll number addition after both data are fetched
   useEffect(() => {
     if (user && eventData && eventData.team_size === 1) {
       setRollNumbers([user.roll_no]);
     }
-  }, [user, eventData]);
+  }, [user, eventData]); // Depends on both user and eventData
 
   if (!eventData || !user) return <div>Loading...</div>;
 
@@ -69,11 +70,6 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
   };
 
   const handleSave = () => {
-    if (eventData.seats + 1 > eventData.max_seats) {
-      alert(`Entry Full.`);
-      return;
-    }
-
     if (eventData.is_team_size_strict && rollNumbers.length < eventData.team_size) {
       alert(`Please add ${eventData.team_size - rollNumbers.length} more roll numbers to complete the team.`);
       return;
@@ -85,12 +81,12 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     }
 
     const newEvent = {
-      eventCode: eventCode,
+      eventCode: eventCode, // Replace with your event code logic
       rollNumbers: [...rollNumbers],
-      title: eventData.title,
-      start: eventData.start,
-      end: eventData.end,
-      teamName: teamName || user.roll_no
+      title: eventData.title, // Replace with your event title logic
+      start: eventData.start, // Replace with your event start time
+      end: eventData.end, // Replace with your event end time
+      teamName: teamName // Include team name if applicable
     };
 
     // Add the new event to the checkout list
@@ -99,12 +95,8 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     // Optionally store in localStorage if needed
     localStorage.setItem('eventsToCheckout', JSON.stringify([...eventToCheckOut, newEvent]));
 
-    navigate('/profile');
+    navigate('/profile'); // Redirect to the profile page
   };
-
-  // Determine the seat count for display
-  const totalSeatsUsed = eventData.team_size > 1 ? 1 : rollNumbers.length;
-  const availableSeats = eventData.seats + totalSeatsUsed;
 
   return (
     <>
@@ -114,13 +106,12 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
             <img src={`${BASE_URL}${eventData.image}`} alt={eventData.title || "Event"} />
           </div>
           <div className="seats-info">
-            <b>Seats: {availableSeats}/{eventData.max_seats}</b>
+            <b>Seats: {eventData.max_seats - rollNumbers.length}/{eventData.max_seats}</b>
           </div>
           {eventData.team_size > 1 && (
             <>
-              <div className="team-name-input m-4">
+              <div className="team-name-input">
                 <input
-                  className="p-2"
                   type="text"
                   placeholder="Team Name"
                   value={teamName}
