@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import userImg from '../../assets/image.png'
 import { useAuth } from '../../AuthContext';
 import { getEventDetails, getUserDetails, registerForEvent } from '../../api';
 
@@ -86,7 +87,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
   return (
     <div className="p-6 font-sans">
       <div className="flex items-center mb-6">
-        <img src="src/assets/image.png" alt="Profile Image" className="w-24 h-24 rounded-full mr-4" />
+        <img src={userImg} alt="Profile Image" className="w-24 h-24 rounded-full mr-4" />
         <div className="flex flex-col">
           <h2 className="text-2xl font-bold">{user?.name || 'Name'}</h2>
           <p className="text-lg text-gray-600">{user?.roll_no || 'Roll No'}</p>
