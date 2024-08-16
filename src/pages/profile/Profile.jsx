@@ -58,32 +58,30 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
   }, [authState.token]);
 
   const handleCheckout = async () => {
-  if (rollNo.trim() === '') {
-    setCheckoutStatus('Please enter your roll number.');
-    return;
-  }
-
-  try {
-    for (const event of eventToCheckOut) {
-      const data = {
-        event_code: event.eventCode,
-        team_name: event.teamName,
-        members: JSON.stringify([rollNo]), // Convert the list to a JSON string
-      };
-      console.log(data); // Log data for debugging
-      const response = await registerForEvent(authState.token, data);
-      if (response.success) {
-        setCheckoutStatus('Checkout successful!');
-      } else {
-        setCheckoutStatus('Checkout failed: ' + response.message);
-      }
+    if (rollNo.trim() === '') {
+      setCheckoutStatus('Please enter your roll number.');
+      return;
     }
-    setEventsToCheckout([]);
-  } catch (error) {
-    setCheckoutStatus('Error during checkout: ' + error.message);
-  }
-};
 
+    try {
+      for (const event of eventToCheckOut) {
+        const data = {
+          event_code: event.eventCode,
+          team_name: event.teamName,
+          members: JSON.stringify([rollNo]), // Convert the list to a JSON string
+        };
+        const response = await registerForEvent(authState.token, data);
+        if (response.success) {
+          setCheckoutStatus('Checkout successful!');
+        } else {
+          setCheckoutStatus('Checkout failed: ' + response.message);
+        }
+      }
+      setEventsToCheckout([]);
+    } catch (error) {
+      setCheckoutStatus('Error during checkout: ' + error.message);
+    }
+  };
 
   return (
     <div className="p-6 font-sans">
@@ -103,8 +101,15 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
-              <span className="block italic text-gray-500">{`Team: ${event.teamName}`}</span>
+              <span className="block italic text-gray-500">{`${event.teamName}`}</span>
               <span className="block text-green-500">Verified</span>
+              {event.whatsapp_link && (
+                <div className='flex'>
+                  <a href={event.whatsapp_link} className="block bg-green-500 p-2 mt-2 rounded-lg  text-white" target="_blank" rel="noopener noreferrer">
+                  Contact on WhatsApp
+                </a>
+                </div>
+              )}
             </div>
           ))
         ) : (
@@ -119,7 +124,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
-              <span className="block italic text-gray-500">{`Team: ${event.teamName}`}</span>
+              <span className="block italic text-gray-500">{`${event.teamName}`}</span>
               <span className="block text-yellow-500">Pending Verification</span>
             </div>
           ))
@@ -135,8 +140,8 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             {eventToCheckOut.map((event, index) => (
               <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
                 <h3 className="text-xl font-semibold">{event.title}</h3>
-                <p>{`Time: ${event.start} - ${event.end}`}</p>
-                <p>{`Roll Numbers: ${event.rollNumbers.join(', ')}`}</p>
+                <p>{`${event.start} - ${event.end}`}</p>
+                <p>{`${event.rollNumbers.join(', ')}`}</p>
               </div>
             ))}
 

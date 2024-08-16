@@ -5,7 +5,7 @@ import './IndividualCard.css';
 import Sponsors from '../../components/Sponsors';
 import { useAuth } from '../../AuthContext';
 
-const BASE_URL = 'http://127.0.0.1:8000/';
+const BASE_URL = 'http://13.234.118.246';
 
 const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
   const { eventCode } = useParams();
@@ -22,6 +22,7 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
       try {
         const response = await getEventDetails(eventCode);
         setEventData(response.data.event); // Set eventData once fetched
+        console.log(response.data)
       } catch (error) {
         console.error('Error fetching event details:', error);
       }
@@ -99,8 +100,8 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
   };
 
   return (
-    <>
-      <div className="event-card">
+    <div className='flex w-full flex justify-center items-center'>
+      <div className="event-card ">
         <div className="left-section">
           <div className="event-image">
             <img src={`${BASE_URL}${eventData.image}`} alt={eventData.title || "Event"} />
@@ -110,15 +111,16 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
           </div>
           {eventData.team_size > 1 && (
             <>
-              <div className="team-name-input">
+              <div className="roll-number-input team-name-input">
                 <input
+                className='p-2'
                   type="text"
                   placeholder="Team Name"
                   value={teamName}
                   onChange={(e) => setTeamName(e.target.value)}
                 />
               </div>
-              <div className="roll-number-input">
+              <div className="roll-number-input m-2">
                 <input
                   type="text"
                   placeholder="Roll no"
@@ -156,7 +158,7 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
         </div>
       </div>
       <Sponsors />
-    </>
+    </div>
   );
 };
 

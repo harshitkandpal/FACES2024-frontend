@@ -38,7 +38,10 @@ const EventCards = () => {
   };
 
   const handleCategoryToggle = () => {
-    const newCategory = currentCategory === 'C' ? 'S' : 'C';
+    const categories = ['C', 'S', 'SE'];
+    const currentIndex = categories.indexOf(currentCategory);
+    const nextIndex = (currentIndex + 1) % categories.length;
+    const newCategory = categories[nextIndex];
     setFlip(true);
     setTimeout(() => {
       setCurrentCategory(newCategory);
@@ -66,7 +69,7 @@ const EventCards = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <span>
-          {currentCategory === 'C' ? 'Cultural' : 'Sports'}
+          {currentCategory === 'C' ? 'Cultural' : currentCategory === 'S' ? 'Sports' : 'Seminar'}
         </span>
         <button onClick={handleCategoryToggle} className="arrow-button">
           <FontAwesomeIcon icon={faChevronRight} />
