@@ -7,7 +7,8 @@ import { useAuth } from '../AuthContext';
 const styles = {
   fontFamily: "Graduate",
   fontStyle: 'normal',
-  fontWeight: '400',
+  fontWeight: '900',
+  fontSize: '48px',
 };
 
 const Navbar = () => {
