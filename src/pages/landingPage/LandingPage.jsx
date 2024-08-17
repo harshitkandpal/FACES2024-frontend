@@ -18,10 +18,6 @@ const LandingPage = () => {
   </div>
 
     <div>
-      <Sponsors />
-    </div>
-
-    <div>
       <HighLights />
     </div>
   </div>

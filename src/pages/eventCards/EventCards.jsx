@@ -38,7 +38,7 @@ const EventCards = () => {
   };
 
   const handleCategoryToggle = () => {
-    const categories = ['C', 'S', 'SE'];
+    const categories = ['C', 'S'];
     const currentIndex = categories.indexOf(currentCategory);
     const nextIndex = (currentIndex + 1) % categories.length;
     const newCategory = categories[nextIndex];
@@ -85,11 +85,8 @@ const EventCards = () => {
                     <div className="event-card-details">
                       <h3>{event.title}</h3>
                       <div className="event-info">
-                        <p><FontAwesomeIcon icon={faClock} /> {event.start} - {event.end}</p>
+                        <p><FontAwesomeIcon icon={faClock} /> {new Date(`1970-01-01T${event.start}`).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}</p>
                         <p><FontAwesomeIcon icon={faChair} /> {event.seats}/{event.max_seats}</p>
-                      </div>
-                      <div className="event-info">
-                        <p><FontAwesomeIcon icon={faLocationPin} /> {event.seats}</p>
                         <p><FontAwesomeIcon icon={faTag} /> {event.entry_fee}/-</p>
                       </div>
                     </div>

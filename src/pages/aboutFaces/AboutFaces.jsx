@@ -1,7 +1,5 @@
 import './AboutFaces.css';
-import Umang from '../../assets/umang.png';
 import myImage from "../../assets/finalimage.png"; // Importing the image
-import Sponsors from '../../components/Sponsors';
 
 
 const AboutFaces = () => {
@@ -24,9 +22,6 @@ When enthusiasm meets the sportsmanship spirit, every match is an opportunity to
 So, let's come together for this exciting sports event that fills you with boundless UMANG and joy !!
         </p>
       </div>
-    </div>
-    <div>
-      <Sponsors />
     </div>
     {/* <div className="dummy">
       <p>dummy1</p>
