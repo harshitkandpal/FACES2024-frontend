@@ -39,10 +39,10 @@ const HighLights = () => {
     <>    
       <div className="landing-page">
         {/* <div className="blob1"></div> */}
-        <h2>HIGHLIGHTS</h2>
+        <h2 className='text-[32px]'>HIGHLIGHTS</h2>
         {['S', 'C'].map((category, index) => (
           <div key={index} className='flex-row overflow-hidden'>
-            <h2>{category === 'S' ? 'SPORTS' : 'CULTURAL'}</h2>
+            <h2 className='text-[24px]'>{category === 'S' ? 'SPORTS' : 'CULTURAL'}</h2>
             <div
               className="card-container flex"
               ref={category === 'S' ? sportsContainerRef : culturalContainerRef}
@@ -54,8 +54,7 @@ const HighLights = () => {
                       <div className="card-body">
                         <h3>{item.title}</h3>
                         <p><FontAwesomeIcon icon={faClock} /> {item.start} - {item.end}</p>
-                        <p><FontAwesomeIcon icon={faMapMarkerAlt} /> {item.location}</p>
-                        <p><FontAwesomeIcon icon={faCalendarAlt} /> {item.day}</p>
+                        <p><FontAwesomeIcon icon={faCalendarAlt} /> Day {item.day}</p>
                         <p><FontAwesomeIcon icon={faMoneyBill} /> {item.entry_fee}/-</p>
                       </div>
                     </div>
