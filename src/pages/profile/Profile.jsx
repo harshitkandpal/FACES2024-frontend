@@ -133,6 +133,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
+              <span className="block text-gray-600">Day: {`${event.day}`}</span>
               <span className="block italic text-gray-500">{`${event.teamName}`}</span>
               <span className="block text-green-500">Verified</span>
               {event.whatsapp_link && (
@@ -156,6 +157,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
             <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
               <span className="block text-xl font-semibold">{event.title}</span>
               <span className="block text-gray-600">{`${event.start} - ${event.end}`}</span>
+              <span className="block text-gray-600">Day: {`${event.day}`}</span>
               <span className="block italic text-gray-500">{`${event.teamName}`}</span>
               <span className="block text-yellow-500">Pending Verification</span>
             </div>
@@ -173,6 +175,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
               <div key={index} className="p-4 border border-gray-300 rounded-lg mb-4">
                 <h3 className="text-xl font-semibold">{event.title}</h3>
                 <p>{`${event.start} - ${event.end}`}</p>
+                <span className="block text-gray-600">Day: {`${event.day}`}</span>
                 <p>{`${event.rollNumbers.join(', ')}`}</p>
               </div>
             ))}
