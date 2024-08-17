@@ -40,13 +40,14 @@ So, let's come together for this exciting sports event that fills you with bound
       <img className="faces" src={myImage} alt="My Local Image" />
       <div className="about-faces">
         <h2>About faces</h2>
-        <p>
-          about faces : Lorem ipsum dolor sit amet, consectetur adipiscing
-          elit. Vestibulum ultricies libero ex, non porttitor est auctor
-          vitae. Proin vestibulum malesuada urna ut euismod. Donec eget
-          ullamcorper sapien, id posuere neque. Ut leo augue, semper sit amet
-          gravida ac, hendrerit facilisis mauris. Sed tincidunt sed lectus sed
-          rutrum.
+        <p>FACES is a dynamic college festival that celebrates the intersection of sports and culture. 
+          This event is a highlight of the academic year, offering students a platform to showcase their athletic and artistic talents. 
+          The sports segment includes competitions in football, basketball, cricket, and other games, emphasizing teamwork, strategy, and 
+          physical skill. Meanwhile, the cultural side of FACES features vibrant performances in singing and dancing, where students explore
+           various genres and styles, from classical to contemporary. The fest also includes other cultural events like drama and fashion 
+           shows, enriching the overall experience. FACES is more than just a series of competitions; it’s a celebration of youth and 
+           creativity, fostering a strong sense of community and school spirit. It’s a time when students come together to share their 
+           passions, build lasting friendships, and create memories that define their college experience.
         </p>
       </div>
     </div>

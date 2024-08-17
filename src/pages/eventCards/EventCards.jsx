@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getEvents } from '../../api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faClock, faChair, faTag, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faChair, faTag, faChevronLeft, faChevronRight, faLocationPin } from '@fortawesome/free-solid-svg-icons';
 import './eventcard.css';
 import { Link } from 'react-router-dom';
 
@@ -69,7 +69,7 @@ const EventCards = () => {
           <FontAwesomeIcon icon={faChevronLeft} />
         </button>
         <span>
-          {currentCategory === 'C' ? 'Cultural' : currentCategory === 'S' ? 'Sports' : 'Seminar'}
+          {currentCategory === 'C' ? 'Cultural' : 'Sports'}
         </span>
         <button onClick={handleCategoryToggle} className="arrow-button">
           <FontAwesomeIcon icon={faChevronRight} />
@@ -89,6 +89,7 @@ const EventCards = () => {
                         <p><FontAwesomeIcon icon={faChair} /> {event.seats}/{event.max_seats}</p>
                       </div>
                       <div className="event-info">
+                        <p><FontAwesomeIcon icon={faLocationPin} /> {event.seats}</p>
                         <p><FontAwesomeIcon icon={faTag} /> {event.entry_fee}/-</p>
                       </div>
                     </div>

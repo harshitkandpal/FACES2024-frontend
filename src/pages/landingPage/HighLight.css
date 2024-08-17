@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Graduate&family=Inter:wght@100..900&display=swap');
+
+
 h2 {
   font-size: 24px;
   margin: 20px 0;
+  padding: 15px 0;
   color: white;
   text-align: center;
+  font-family: "Graduate", serif;
 }
 
 .card-container {
@@ -14,6 +19,7 @@ h2 {
   scrollbar-width: none; /* Hide scrollbar on Firefox */
   -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
   padding: 10px 0;
+  margin: 20px 0;
 }
 
 .card-container::-webkit-scrollbar {
