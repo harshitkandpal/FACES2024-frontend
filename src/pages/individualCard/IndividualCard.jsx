@@ -15,8 +15,19 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
   const [rollNumbers, setRollNumbers] = useState([]);
   const [newRollNumber, setNewRollNumber] = useState('');
   const [teamName, setTeamName] = useState('');
+  const [hasCheckedAuth, setHasCheckedAuth] = useState(false);
+
+  
 
   useEffect(() => {
+    if (!authState.token && !hasCheckedAuth) {
+      // If the user is not logged in, show alert and redirect them to the login page
+      setHasCheckedAuth(true); // Set the flag to true after the first check
+      alert('You must be logged in');
+      navigate('/login');
+      return;
+    }
+  
     const fetchEventDetails = async () => {
       try {
         const response = await getEventDetails(eventCode);
@@ -26,9 +37,10 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
         console.error('Error fetching event details:', error);
       }
     };
-
+  
     fetchEventDetails();
-  }, [eventCode]); // Only depends on eventCode
+  }, [authState.token, eventCode, navigate, hasCheckedAuth]);
+  
 
   useEffect(() => {
     const fetchUserDetails = async () => {
