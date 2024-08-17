@@ -101,7 +101,7 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     if (eventData.team_size === 1) {
       eventData.max_seats -= 1; // Decrease seats by 1 for individual participation
     }
-  
+    console.log(newEvent)
     navigate('/profile'); // Redirect to the profile page
   };
   
@@ -114,7 +114,7 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
             <img src={`${BASE_URL}${eventData.image}`} alt={eventData.title || "Event"} />
           </div>
           <div className="seats-info">
-  <b>Seats: {eventData.max_seats}/{eventData.max_seats}</b>
+  <b>Seats: {eventData.max_seats-eventData.seats}</b>
 </div>
 
           {eventData.team_size > 1 && (

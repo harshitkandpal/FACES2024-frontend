@@ -64,26 +64,56 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
       setCheckoutStatus('Please enter your roll number.');
       return;
     }
-
+  
     try {
+      let isSuccess = true;
+      let message = '';
+  
+      // Process each event in the checkout list
       for (const event of eventToCheckOut) {
+        // Check if the roll number is already in the rollNumbers array
+        const allRollNumbers = event.rollNumbers.includes(rollNo)
+          ? [...event.rollNumbers]
+          : [...event.rollNumbers, rollNo];
+  
         const data = {
           event_code: event.eventCode,
           team_name: event.teamName,
-          members: JSON.stringify([rollNo]), // Convert the list to a JSON string
+          members: JSON.stringify(allRollNumbers), // Convert the list to a JSON string
         };
-        const response = await registerForEvent(authState.token, data);
-        if (response.success) {
-          setCheckoutStatus('Checkout successful!');
-        } else {
-          setCheckoutStatus('Checkout failed: ' + response.message);
+  
+        try {
+          const response = await registerForEvent(authState.token, data);
+  
+          if (response.success) {
+            continue; // Proceed with next event if the current one is successful
+          } else {
+            isSuccess = false;
+            message = `Failed to register for ${event.title}: ${response.detail || 'No error message provided'}`;
+            break; // Stop further registration attempts if any fail
+          }
+        } catch (error) {
+          console.error(`Error during registration for ${event.title}:`, error);
+          isSuccess = false;
+          message = `Error during registration for ${event.title}: ${error.message || 'Unknown error'}`;
+          break;
         }
       }
-      setEventsToCheckout([]);
+  
+      if (isSuccess) {
+        setCheckoutStatus('All events registered successfully!');
+        setEventsToCheckout([]); // Clear events after successful checkout
+      } else {
+        setCheckoutStatus(message); // Show failure message for the specific event
+      }
     } catch (error) {
       setCheckoutStatus('Error during checkout: ' + error.message);
+      console.error('Error during checkout process:', error);
     }
   };
+  
+  
+  
 
   return (
     <div className="p-6 font-sans">
