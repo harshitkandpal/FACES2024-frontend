@@ -47,6 +47,7 @@ const Profile = ({ eventToCheckOut, setEventsToCheckout }) => {
           });
 
           setVerifiedEvents(verified);
+          console.log(verified);
           setUnverifiedEvents(unverified);
 
         } catch (error) {

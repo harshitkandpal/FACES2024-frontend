@@ -59,45 +59,52 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
     if (/^\d{7}$/.test(newRollNumber)) {
       if (rollNumbers.includes(newRollNumber)) {
         alert('This roll number has already been added.');
-      } else if (rollNumbers.length < eventData.max_seats) {
+      } else if (rollNumbers.length < eventData.team_size) {
         setRollNumbers([...rollNumbers, newRollNumber]);
         setNewRollNumber('');
       } else {
-        alert('All seats are filled.');
+        alert('Team is already full.');
       }
     } else {
       alert('Please enter a valid 7-digit roll number.');
     }
   };
-
+  
   const handleSave = () => {
+    // Ensure the team size and roll numbers match for team events
     if (eventData.is_team_size_strict && rollNumbers.length < eventData.team_size) {
       alert(`Please add ${eventData.team_size - rollNumbers.length} more roll numbers to complete the team.`);
       return;
     }
-
+  
     if (rollNumbers.length === 0) {
       alert('Please add at least one roll number.');
       return;
     }
-
+  
     const newEvent = {
-      eventCode: eventCode, // Replace with your event code logic
+      eventCode: eventCode,
       rollNumbers: [...rollNumbers],
-      title: eventData.title, // Replace with your event title logic
-      start: eventData.start, // Replace with your event start time
-      end: eventData.end, // Replace with your event end time
-      teamName: teamName // Include team name if applicable
+      title: eventData.title,
+      start: eventData.start,
+      end: eventData.end,
+      teamName: teamName,
     };
-
+  
     // Add the new event to the checkout list
     setEventsToCheckout(prevEvents => [...prevEvents, newEvent]);
-
-    // Optionally store in localStorage if needed
+  
+    // Optionally store in localStorage
     localStorage.setItem('eventsToCheckout', JSON.stringify([...eventToCheckOut, newEvent]));
-
+  
+    // Decrement seats only if it's not a team event
+    if (eventData.team_size === 1) {
+      eventData.max_seats -= 1; // Decrease seats by 1 for individual participation
+    }
+  
     navigate('/profile'); // Redirect to the profile page
   };
+  
 
   return (
     <div className='flex w-full flex justify-center items-center'>
@@ -107,8 +114,9 @@ const IndividualCard = ({ setEventsToCheckout, eventToCheckOut }) => {
             <img src={`${BASE_URL}${eventData.image}`} alt={eventData.title || "Event"} />
           </div>
           <div className="seats-info">
-            <b>Seats: {eventData.max_seats - rollNumbers.length}/{eventData.max_seats}</b>
-          </div>
+  <b>Seats: {eventData.max_seats}/{eventData.max_seats}</b>
+</div>
+
           {eventData.team_size > 1 && (
             <>
               <div className="roll-number-input team-name-input">
