@@ -1,91 +1,58 @@
 /* General Styles */
-.grid-container {
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+.individual-card-container {
+    display: flex;
+    flex-direction: column; /* Default to column layout for mobile */
     padding: 20px;
     background-color: #062030;
     color: white;
-    max-width: 1600px;
+    max-width: 1200px; /* Adjust max-width as needed */
     margin: auto;
-}
-
-/* Mobile View (Default) */
-.grid-container {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-        "grid-item-1"
-        "grid-item-2"
-        "grid-item-4"
-        "grid-item-3"; /* Mobile order: 1, 2, 4, 3 */
 }
 
 /* Desktop View */
 @media screen and (min-width: 768px) {
-    .grid-container {
-        grid-template-columns: 1fr 1fr; /* Two columns */
-        grid-template-areas: 
-            "grid-item-1 grid-item-2"
-            "grid-item-3 grid-item-4"; /* Desktop order: 1, 2, 3, 4 */
-    }
-    .event-image {
-        background-color: #86c8c4;
-        border-radius: 25px;
-        width: 90%;
+    .individual-card-container {
+        flex-direction: row; /* Side by side layout for desktop */
     }
 }
 
-/* Grid Item Styles */
-.grid-item {
+.left-section, .right-section {
+    flex: 1; /* Allow sections to grow equally */
     padding: 20px;
 }
 
-.grid-item-1 {
-    grid-area: grid-item-1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.grid-item-2 {
-    grid-area: grid-item-2;
+.left-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
-.grid-item-3 {
-    grid-area: grid-item-3;
+.right-section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-}
-
-.grid-item-4 {
-    grid-area: grid-item-4;
+    text-align: center;
 }
 
 /* Event Image Styles */
 .event-image {
     background-color: #86c8c4;
     border-radius: 25px;
-    width: 70%;
+    width: 100%;
+    max-width: 400px; /* Adjust max-width as needed */
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 20px;
 }
 
 .event-image img {
-    transform: scale(0.9) translate(0%, 0%);
     width: 100%;
-    height: 100%;
-    object-fit: contain;
+    height: auto;
+    object-fit: cover; /* Changed to cover for better fitting */
     border-radius: 25px;
 }
 
@@ -94,10 +61,11 @@
     font-size: 24px;
     font-weight: bold; 
     text-align: center;
+    margin-bottom: 10px;
 }
 
 .event-details {
-    font-size: 24px;
+    font-size: 18px;
     line-height: 1.5;
     font-weight: bold;
     text-align: center;
@@ -120,7 +88,7 @@
 }
 
 .roll-number-input input {
-    width: 50%;
+    width: 60%; /* Adjust width to fit button */
     padding: 10px 20px;
     font-size: 16px;
     border-radius: 25px;
@@ -142,7 +110,7 @@
     outline: none;
 }
 
-/* Join Button Container */
+/* Join Button */
 .join-button-container {
     display: flex;
     justify-content: center;
@@ -151,10 +119,8 @@
 }
 
 .join-button {
-    align-content: center;
-    justify-content: center;
     font-size: 21px;
-    padding: 8px 12px;
+    padding: 10px 20px;
     background-color: #287271;
     border: none;
     color: #fcfcfc;
@@ -164,11 +130,10 @@
 
 /* Roll Number List */
 .roll-number-list-container {
-    max-width: 60%;
-    align-self: center;
+    max-width: 80%; /* Adjusted for better spacing */
+    margin-bottom: 20px;
+    display: flex;
     justify-content: center;
-    border-radius: 5px;
-    margin-bottom: 20px;    
 }
 
 .roll-number-list {
